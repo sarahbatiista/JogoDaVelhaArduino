@@ -1,4 +1,6 @@
 # JogoDaVelhaArduino
+## Data: 
+     29/04/24
 ## Performance
      O jogo foi feito no flowgorithm;
      O jogo conta com um tabuleiro de matriz 3x3 (contém linhas e colunas) de interface simples e intuitiva;
