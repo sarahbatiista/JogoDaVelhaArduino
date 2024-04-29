@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="I1HM"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-04-22 03:49:15 "/>
+        <attribute name="saved" value="2024-04-25 02:56:28 "/>
         <attribute name="created" value="STFITTtFQ0U0MzZTRU5BSVhYOzIwMjQtMDQtMTg7IjEwOjAwOjQwICI7MjM1OA=="/>
-        <attribute name="edited" value="STFITTtFQ0U0MzZTRU5BSVhYOzIwMjQtMDQtMjI7IjAzOjQ5OjE1ICI7NzsyNDg0"/>
+        <attribute name="edited" value="STFITTtFQ0U0MzZTRU5BSVhYOzIwMjQtMDQtMjU7IjAyOjU2OjI4ICI7OTsyNDkw"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -15,8 +15,8 @@
             <declare name="velha" type="Integer" array="False" size=""/>
             <declare name="linha" type="Integer" array="False" size=""/>
             <declare name="coluna" type="Integer" array="False" size=""/>
-            <declare name="HaVencedor" type="Boolean" array="False" size=""/>
-            <assign variable="HaVencedor" expression="false"/>
+            <declare name="HaVencedor" type="Integer" array="False" size=""/>
+            <assign variable="HaVencedor" expression="0"/>
             <declare name="tabuleiro" type="Integer" array="True" size="9"/>
             <comment text="Limpar/zerar o tabuleiro"/>
             <declare name="i" type="Integer" array="False" size=""/>
@@ -29,7 +29,7 @@
             <assign variable="JogadorDaVez" expression="1"/>
             <comment text="Registrar a jogada do primeiro jogador"/>
             <assign variable="velha" expression="1"/>
-            <do expression="!HaVencedor &amp;&amp; velha&lt;=9">
+            <do expression="HaVencedor ==0 &amp;&amp; velha&lt;=9">
                 <output expression="tabuleiro[0] &amp; tabuleiro[1] &amp; tabuleiro[2]" newline="True"/>
                 <output expression="tabuleiro[3] &amp; tabuleiro[4] &amp; tabuleiro[5]" newline="True"/>
                 <output expression="tabuleiro[6] &amp; tabuleiro[7] &amp; tabuleiro[8]" newline="True"/>
@@ -42,7 +42,18 @@
                         <assign variable="coluna" expression="toInteger(Char(jogada,2))"/>
                         <output expression="&quot;Linha: &quot; &amp; linha &amp; &quot;;Coluna:&quot; &amp; coluna" newline="True"/>
                         <if expression="tabuleiro[3*linha+coluna]==0">
-                            <then/>
+                            <then>
+                                <assign variable="tabuleiro[3*linha+coluna]" expression="JogadorDaVez"/>
+                                <assign variable="HaVencedor" expression="verificacao(tabuleiro, JogadorDaVez)"/>
+                                <if expression="JogadorDaVez = 1">
+                                    <then>
+                                        <assign variable="JogadorDaVez" expression="2"/>
+                                    </then>
+                                    <else>
+                                        <assign variable="JogadorDaVez" expression="1"/>
+                                    </else>
+                                </if>
+                            </then>
                             <else>
                                 <output expression="&quot;Posi&#231;&#227;o ocupada&quot;" newline="True"/>
                             </else>
@@ -52,54 +63,16 @@
                         <output expression="&quot;Jogada inv&#225;lida&quot;" newline="True"/>
                     </else>
                 </if>
-                <assign variable="linha" expression="toInteger(Char(jogada,0))"/>
-                <assign variable="coluna" expression="toInteger(Char(jogada,2))"/>
-                <output expression="&quot;Linha: &quot; &amp; linha &amp; &quot;;Coluna: &quot; &amp; coluna" newline="True"/>
-                <comment text="Verificar se a posi&#231;&#227;o 'jogada' &#233; v&#225;lida"/>
-                <comment text="Converter a jogada texto em dois inteiros linha e coluna"/>
-                <if expression="tabuleiro[3*linha+coluna]==0">
-                    <then>
-                        <assign variable="tabuleiro[3*linha+coluna]" expression="JogadorDaVez"/>
-                        <if expression="(tabuleiro[0] == JogadorDaVez &amp;&amp; tabuleiro[1] == JogadorDaVez &amp;&amp; tabuleiro[2] == JogadorDaVez) || (tabuleiro[3] == JogadorDaVez &amp;&amp; tabuleiro[4] == JogadorDaVez &amp;&amp; tabuleiro[5] == JogadorDaVez) || (tabuleiro[6] == JogadorDaVez &amp;&amp; tabuleiro[7] == JogadorDaVez &amp;&amp; tabuleiro[8] == JogadorDaVez)">
-                            <then>
-                                <assign variable="HaVencedor" expression="true"/>
-                            </then>
-                            <else>
-                                <if expression="(tabuleiro[0] == JogadorDaVez &amp;&amp; tabuleiro[3] == JogadorDaVez &amp;&amp; tabuleiro[6] == JogadorDaVez) || (tabuleiro[1] == JogadorDaVez &amp;&amp; tabuleiro[4] == JogadorDaVez &amp;&amp; tabuleiro[7] == JogadorDaVez) || (tabuleiro[2] == JogadorDaVez &amp;&amp; tabuleiro[5] == JogadorDaVez &amp;&amp; tabuleiro[8] == JogadorDaVez)">
-                                    <then>
-                                        <assign variable="HaVencedor" expression="true"/>
-                                    </then>
-                                    <else>
-                                        <if expression="(tabuleiro[0] == JogadorDaVez &amp;&amp; tabuleiro[4] == JogadorDaVez &amp;&amp; tabuleiro[8] == JogadorDaVez) || (tabuleiro[2] == JogadorDaVez &amp;&amp; tabuleiro[4] == JogadorDaVez &amp;&amp; tabuleiro[6] == JogadorDaVez)">
-                                            <then>
-                                                <assign variable="HaVencedor" expression="true"/>
-                                            </then>
-                                            <else>
-                                                <if expression="JogadorDaVez = 1">
-                                                    <then>
-                                                        <assign variable="JogadorDaVez" expression="2"/>
-                                                    </then>
-                                                    <else>
-                                                        <assign variable="JogadorDaVez" expression="1"/>
-                                                    </else>
-                                                </if>
-                                            </else>
-                                        </if>
-                                    </else>
-                                </if>
-                            </else>
-                        </if>
-                        <assign variable="velha" expression="velha + 1"/>
-                        <comment text="Trocar o jogador"/>
-                    </then>
-                    <else>
-                        <comment text="Informar o Jogador 1 que a posi&#231;&#227;o est&#225; preenchida, &#233; inv&#225;lida e ele precisa informar uma posi&#231;&#227;o v&#225;lida."/>
-                        <output expression="&quot;Posi&#231;&#227;o ocupada, jogue novamente!&quot;" newline="True"/>
-                    </else>
-                </if>
-                <comment text="Verificar jogada vencedora nas linhas"/>
             </do>
-            <if expression="HaVencedor">
+            <if expression="JogadorDaVez = 1">
+                <then>
+                    <assign variable="JogadorDaVez" expression="2"/>
+                </then>
+                <else>
+                    <assign variable="JogadorDaVez" expression="1"/>
+                </else>
+            </if>
+            <if expression="HaVencedor !=0">
                 <then>
                     <output expression="&quot;Parab&#233;ns pela vit&#243;ria, jogador &quot; &amp; JogadorDaVez" newline="True"/>
                 </then>
@@ -132,6 +105,36 @@
                     </if>
                 </then>
                 <else/>
+            </if>
+        </body>
+    </function>
+    <function name="verificacao" type="Integer" variable="vencedor">
+        <parameters>
+            <parameter name="tabuleiro" type="Integer" array="True"/>
+            <parameter name="JogadorDaVez" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="vencedor" type="Integer" array="False" size=""/>
+            <assign variable="vencedor" expression="0"/>
+            <if expression="(tabuleiro[0] == JogadorDaVez &amp;&amp; tabuleiro[1] == JogadorDaVez &amp;&amp; tabuleiro[2] == JogadorDaVez) || (tabuleiro[3] == JogadorDaVez &amp;&amp; tabuleiro[4] == JogadorDaVez &amp;&amp; tabuleiro[5] == JogadorDaVez) || (tabuleiro[6] == JogadorDaVez &amp;&amp; tabuleiro[7] == JogadorDaVez &amp;&amp; tabuleiro[8] == JogadorDaVez)">
+                <then>
+                    <assign variable="vencedor" expression="2"/>
+                </then>
+                <else>
+                    <if expression="(tabuleiro[0] == JogadorDaVez &amp;&amp; tabuleiro[3] == JogadorDaVez &amp;&amp; tabuleiro[6] == JogadorDaVez) || (tabuleiro[1] == JogadorDaVez &amp;&amp; tabuleiro[4] == JogadorDaVez &amp;&amp; tabuleiro[7] == JogadorDaVez) || (tabuleiro[2] == JogadorDaVez &amp;&amp; tabuleiro[5] == JogadorDaVez &amp;&amp; tabuleiro[8] == JogadorDaVez)">
+                        <then>
+                            <assign variable="vencedor" expression="2"/>
+                        </then>
+                        <else>
+                            <if expression="(tabuleiro[0] == JogadorDaVez &amp;&amp; tabuleiro[4] == JogadorDaVez &amp;&amp; tabuleiro[8] == JogadorDaVez) || (tabuleiro[2] == JogadorDaVez &amp;&amp; tabuleiro[4] == JogadorDaVez &amp;&amp; tabuleiro[6] == JogadorDaVez)">
+                                <then>
+                                    <assign variable="vencedor" expression="2"/>
+                                </then>
+                                <else/>
+                            </if>
+                        </else>
+                    </if>
+                </else>
             </if>
         </body>
     </function>
