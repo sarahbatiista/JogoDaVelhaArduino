@@ -34,11 +34,11 @@
     // Anotar/Registrar a jogada, do primeiro jogador
     velha = 1;
     do {
-      console.log(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-      console.log(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-      console.log(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+        window.alert(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
+        window.alert(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
+        window.alert(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
         jogada = "";
-      console.log("Digite a posição da sua peça JOGADOR " + jogadorDaVez);
+        window.alert("Digite a posição da sua peça JOGADOR " + jogadorDaVez);
         jogada = window.prompt('Enter a value for jogada');
         if (validaPosicao(jogada)) {
 
@@ -48,7 +48,7 @@
 
             // CORRIGIR O ERRO DE DIGITAÇÃO
             coluna = parseInt(jogada.charAt(2));
-          console.log("Linha: " + linha + "; Coluna: " + coluna);
+            window.alert("Linha: " + linha + "; Coluna: " + coluna);
 
             // Verificar se a posição 'jogada' é valida
             if (tabuleiro[3 * linha + coluna] == 0) {
@@ -78,12 +78,12 @@
                 }
                 velha = velha + 1;
             } else {
-              console.log("Posição ocupada, jogue novamente !!!");
+                window.alert("Posição ocupada, jogue novamente !!!");
 
                 // Informar ao Jogador 1 que a posição está preenchida, é inválida e ele precisa informar um posição válida.
             }
         } else {
-          console.log("Jogada inválida !!!");
+            window.alert("Jogada inválida !!!");
         }
 
         // Verificar a jogada vencedora nas linhas.
@@ -91,13 +91,13 @@
 
     // Verificar o tabuleiro, se houve ganhador ou empate, finalizar o jogo.
     if (haVencedor) {
-      console.log("Parabéns pela a vitória, jogador " + jogadorDaVez);
+        window.alert("Parabéns pela a vitória, jogador " + jogadorDaVez);
     } else {
-      console.log("Deu VELHA!!!");
+        window.alert("Deu VELHA!!!");
     }
-  console.log(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-  console.log(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-  console.log(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+    window.alert(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
+    window.alert(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
+    window.alert(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
 }
 
 function getValArrayInt(linha, coluna, matriz, qtdeLinhas) {
@@ -112,13 +112,13 @@ function validaPosicao(entrada) {
     var entradaValida;
 
     entradaValida = false;
-  console.log(entrada.length());
+    window.alert(entrada.length());
     if (entrada.length() == 3) {
-      console.log("Comprimento da string igual  3");
+        window.alert("Comprimento da string igual  3");
         if (entrada.charAt(0) == "0" || entrada.charAt(0) == "1" || entrada.charAt(0) == "2") {
-          console.log(entrada.charAt(0));
+            window.alert(entrada.charAt(0));
             if (entrada.charAt(2) == "0" || entrada.charAt(2) == "1" || entrada.charAt(2) == "2") {
-              console.log(entrada.charAt(2));
+                window.alert(entrada.charAt(2));
                 entradaValida = true;
             }
         }
