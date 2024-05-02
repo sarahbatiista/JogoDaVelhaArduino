@@ -4,11 +4,11 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Instrutor"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-05-02 07:57:30 "/>
+        <attribute name="saved" value="2024-05-02 08:19:05 "/>
         <attribute name="created" value="SW5zdHJ1dG9yO0VDRTQzNlNFTkFJWFg7MjAyNC0wNC0xODsiMTA6MDE6MTggIjszMDc5"/>
         <attribute name="edited" value="SW5zdHJ1dG9yO0VDRTQzNk1BS0VSOzIwMjQtMDQtMTk7IjEyOjQ3OjU1ICI7MjtJbnN0cnV0b3I7RUNFNDM2TUFLRVI7MjAyNC0wNC0xOTsiMTE6NDA6MTAgIjs1OTg1"/>
         <attribute name="edited" value="SW5zdHJ1dG9yO0VDRTQzNk1BS0VSOzIwMjQtMDQtMTk7IjEyOjQ4OjA4ICI7NTszMDI4"/>
-        <attribute name="edited" value="SW5zdHJ1dG9yO0VDRTQzNlNFTkFJWFg7MjAyNC0wNS0wMjsiMDc6NTc6MzAgIjsxNjszMjQ2"/>
+        <attribute name="edited" value="SW5zdHJ1dG9yO0VDRTQzNlNFTkFJWFg7MjAyNC0wNS0wMjsiMDg6MTk6MDUgIjsxNzszMjQ4"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -114,35 +114,24 @@
             <output expression="tabuleiro[6] &amp; tabuleiro[7] &amp; tabuleiro[8]" newline="True"/>
         </body>
     </function>
-    <function name="getValArrayInt" type="Integer" variable="valor">
-        <parameters>
-            <parameter name="linha" type="Integer" array="False"/>
-            <parameter name="coluna" type="Integer" array="False"/>
-            <parameter name="Matriz" type="Integer" array="True"/>
-            <parameter name="qtdeLinhas" type="Integer" array="False"/>
-        </parameters>
-        <body>
-            <declare name="valor" type="Integer" array="False" size=""/>
-            <assign variable="valor" expression="Matriz[qtdeLinhas * linha + coluna]"/>
-        </body>
-    </function>
     <function name="validaPosicao" type="Boolean" variable="entradaValida">
         <parameters>
             <parameter name="entrada" type="String" array="False"/>
         </parameters>
         <body>
+            <comment text="Fun&#231;&#227;o para validar a entrada da jogada por meio de texto, o formato deve ser:&#13;&#10;Primeiro caracter: 0 ou 1 ou 2&#13;&#10;Segundo caracter: qualquer um&#13;&#10;Terceiro caracter: 0 ou 1 ou 2"/>
             <declare name="entradaValida" type="Boolean" array="False" size=""/>
             <assign variable="entradaValida" expression="false"/>
-            <output expression="Len(entrada)" newline="True"/>
+            <comment text="A entra da jogadan&#227;o pode ter mais que 3 caracteres de comprimento."/>
             <if expression="Len(entrada)==3">
                 <then>
-                    <output expression="&quot;Comprimento da string igual  3&quot;" newline="True"/>
+                    <comment text="Verifica o primeiro caracter se h&#225; somente caracteres v&#225;lidos (0,1,2)."/>
                     <if expression="Char(entrada,0) == &quot;0&quot; || Char(entrada,0) == &quot;1&quot; || Char(entrada,0) == &quot;2&quot;">
                         <then>
-                            <output expression="Char(entrada,0)" newline="True"/>
+                            <comment text="Verifica o terceiro caracter se h&#225; somente caracteres v&#225;lidos (0,1,2)."/>
                             <if expression="Char(entrada,2) == &quot;0&quot; || Char(entrada,2) == &quot;1&quot; || Char(entrada,2) == &quot;2&quot;">
                                 <then>
-                                    <output expression="Char(entrada,2)" newline="True"/>
+                                    <comment text="Retorna verdadeiro se a entrada da jogada possui os caracteres e comprimentos v&#225;lidos."/>
                                     <assign variable="entradaValida" expression="true"/>
                                 </then>
                                 <else/>
