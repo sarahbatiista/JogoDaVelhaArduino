@@ -10,7 +10,7 @@
     var haVencedor;
 
     haVencedor = false;
-    var tabuleiro = createArray(9);
+    var tabuleiro = Array(9);
 
     // Limpar/zerar o tabuleiro
     var index;
@@ -34,9 +34,9 @@
     // Anotar/Registrar a jogada, do primeiro jogador
     velha = 1;
     do {
-        window.alert(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-        window.alert(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-        window.alert(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+        window.alert(tabuleiro[0].toString() + tabuleiro[1] + tabuleiro[2]);
+        window.alert(tabuleiro[3].toString() + tabuleiro[4] + tabuleiro[5]);
+        window.alert(tabuleiro[6].toString() + tabuleiro[7] + tabuleiro[8]);
         jogada = "";
         window.alert("Digite a posição da sua peça JOGADOR " + jogadorDaVez);
         jogada = window.prompt('Enter a value for jogada');
@@ -95,9 +95,9 @@
     } else {
         window.alert("Deu VELHA!!!");
     }
-    window.alert(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-    window.alert(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-    window.alert(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+    window.alert(tabuleiro[0].toString() + tabuleiro[1] + tabuleiro[2]);
+    window.alert(tabuleiro[3].toString() + tabuleiro[4] + tabuleiro[5]);
+    window.alert(tabuleiro[6].toString() + tabuleiro[7] + tabuleiro[8]);
 }
 
 function getValArrayInt(linha, coluna, matriz, qtdeLinhas) {
@@ -112,8 +112,8 @@ function validaPosicao(entrada) {
     var entradaValida;
 
     entradaValida = false;
-    window.alert(entrada.length());
-    if (entrada.length() == 3) {
+    window.alert(entrada.length);
+    if (entrada.length == 3) {
         window.alert("Comprimento da string igual  3");
         if (entrada.charAt(0) == "0" || entrada.charAt(0) == "1" || entrada.charAt(0) == "2") {
             window.alert(entrada.charAt(0));
